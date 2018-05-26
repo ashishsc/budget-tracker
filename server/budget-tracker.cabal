@@ -9,3 +9,4 @@ executable budget-tracker
   hs-source-dirs: app
   main-is: Main.hs
   build-depends: base, scotty, postgresql-simple
+  default-extensions: OverloadedStrings
