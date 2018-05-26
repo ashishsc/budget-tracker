@@ -1,0 +1,6 @@
+name: budget-tracker
+version: 0
+build-type: Simple
+cabal-version: >= 1.10
+
+library
