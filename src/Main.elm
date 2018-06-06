@@ -1,12 +1,11 @@
 module Main exposing (..)
 
-import Element
-import Html exposing (Html, div, h1, img, text)
-import Html.Attributes exposing (src)
-import Style
-
-
----- MODEL ----
+import Color
+import Element as E
+import Element.Attributes as EAttr
+import Html exposing (Html, text)
+import Style as S
+import Style.Color
 
 
 type alias Model =
@@ -37,40 +36,33 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    Element.grid Grid
-        []
-        { columns = [ px 100 px 100 ]
-        , rows = [ px 100 ]
-        , cells =
-            [ cell
-                { start = ( 0, 0 )
-                , width = 1
-                , height = 1
-                , content = el Category [] (text "Category")
-                }
-                { start = ( 0, 0 )
-                , width = 1
-                , height = 1
-                , content = el Category [] (text "Category")
-                }
-            ]
-        }
-
-
-type Categories
-    = Groceries
-    | EatingOut
-    | HomeGoods
-    | Games
-    | Alcohol
+    E.layout stylesheet <|
+        E.grid None
+            []
+            { columns = [ EAttr.px 100, EAttr.px 100 ]
+            , rows = [ EAttr.px 100, EAttr.px 100 ]
+            , cells =
+                [ E.cell
+                    { start = ( 0, 0 )
+                    , width = 1
+                    , height = 1
+                    , content = E.el Cat [] <| E.text "Groceries"
+                    }
+                ]
+            }
 
 
 type MyStyles
-    = Grid
+    = Cat
+    | None
 
 
+stylesheet : S.StyleSheet MyStyles variation
 stylesheet =
-    Style.styleSheet [ Style.style Grid ] []
+    S.styleSheet
+        [ S.style Cat
+            [ Style.Color.background Color.blue ]
+        ]
 
 
 main : Program Never Model Msg
