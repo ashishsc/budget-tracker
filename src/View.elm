@@ -24,11 +24,12 @@ category name =
 
 items : List (Element Styles variation msg)
 items =
-    [ row Styles.None
+    [ wrappedRow Styles.None
         [ spacing 10, height fill ]
         [ category "Clothes"
         , category "Food"
         , category "Groceries"
         , category "Drinking"
+        , category "Reading"
         ]
     ]
