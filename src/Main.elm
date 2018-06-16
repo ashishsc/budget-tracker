@@ -1,13 +1,23 @@
 module Main exposing (..)
 
 import Html exposing (Html)
-import Types exposing (Model)
+import Types exposing (Category(..), Model)
 import View exposing (view)
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( {}, Cmd.none )
+    ( { categories =
+            List.map Category
+                [ "Clothes"
+                , "Food"
+                , "Groceries"
+                , "Drinking"
+                , "Reading"
+                ]
+      }
+    , Cmd.none
+    )
 
 
 type Msg
