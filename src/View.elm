@@ -36,9 +36,18 @@ categoryButton index (Category name) =
         (text name)
 
 
+addCategoryButton : Element Styles variation msg
+addCategoryButton =
+    button (Styles.CategoryStyle Add)
+        [ width (percent 50), height fill, padding 5 ]
+        (text "+")
+
+
 items : List Category -> List (Element Styles variation msg)
 items categories =
     [ wrappedRow Styles.None
         [ height fill ]
-        (List.indexedMap categoryButton categories)
+        (List.indexedMap categoryButton categories
+            ++ [ addCategoryButton ]
+        )
     ]

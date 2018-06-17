@@ -3,6 +3,7 @@ module Styles exposing (..)
 import Color
 import Style exposing (..)
 import Style.Color
+import Style.Font
 
 
 type Styles
@@ -16,6 +17,7 @@ type CategoryColor
     | Green
     | Blue
     | Yellow
+    | Add
 
 
 stylesheet : StyleSheet Styles variation
@@ -29,4 +31,9 @@ stylesheet =
             [ Style.Color.background Color.blue ]
         , style (CategoryStyle Yellow)
             [ Style.Color.background Color.yellow ]
+        , style (CategoryStyle Add)
+            [ Style.Color.background Color.black
+            , Style.Color.text Color.white
+            , Style.Font.size 80
+            ]
         ]
