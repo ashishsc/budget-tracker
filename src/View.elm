@@ -4,7 +4,7 @@ import Array exposing (Array, fromList)
 import Element exposing (..)
 import Element.Attributes exposing (..)
 import Html exposing (Html)
-import Styles exposing (CategoryColor(..), Styles(..), stylesheet)
+import Styles exposing (CategoryColor(..), Styles(..), categoryColors, stylesheet)
 import Types exposing (Category(..), Model)
 
 
@@ -16,11 +16,6 @@ view model =
 mainColumn : Model -> Element Styles variation msg
 mainColumn model =
     column Styles.Container [ width fill, height fill ] (items model.categories)
-
-
-categoryColors : Array CategoryColor
-categoryColors =
-    fromList [ Red, Green, Blue, Yellow ]
 
 
 categoryButton : Int -> Category -> Element Styles variation msg
@@ -38,7 +33,7 @@ categoryButton index (Category name) =
 
 addCategoryButton : Element Styles variation msg
 addCategoryButton =
-    button (Styles.CategoryStyle Add)
+    button Styles.Setting
         [ width (percent 50), height fill, padding 5 ]
         (text "+")
 
