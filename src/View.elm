@@ -47,12 +47,17 @@ dialog model =
     case model.newCategory of
         Just name ->
             modal Dialog [ width (percent 80), height (percent 80), center ] <|
-                column None [] <|
-                    [ el None [ alignRight, onClick CloseNewCategoryDialog ] (text "x")
-                    , Input.text None [] <|
+                column None [ height fill, spacing 20, padding 20 ] <|
+                    [ button None
+                        [ alignRight
+                        , padding 10
+                        , onClick CloseNewCategoryDialog
+                        ]
+                        (text "x")
+                    , Input.text None [ width (px 80), center ] <|
                         { onChange = UpdateNewCategory
                         , value = name
-                        , label = Input.labelAbove (text "New Category")
+                        , label = Input.labelLeft (text "New Category")
                         , options = []
                         }
                     , button None [ onClick (AddCategory name) ] (text "Add")

@@ -3,6 +3,7 @@ module Styles exposing (..)
 import Array exposing (Array)
 import Color exposing (Color, rgb)
 import Style exposing (..)
+import Style.Border
 import Style.Color
 import Style.Font
 
@@ -58,6 +59,7 @@ stylesheet =
         , style Dialog
             [ Style.Color.background darken
             , Style.Color.text white
+            , Style.Border.rounded 5
             ]
         ]
 
