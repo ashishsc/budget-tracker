@@ -11,6 +11,7 @@ type Styles
     = CategoryStyle CategoryColor
     | Container
     | Setting
+    | Dialog
     | None
 
 
@@ -53,6 +54,10 @@ stylesheet =
             [ Style.Color.background darken
             , Style.Color.text white
             , Style.Font.size 80
+            ]
+        , style Dialog
+            [ Style.Color.background darken
+            , Style.Color.text white
             ]
         ]
 

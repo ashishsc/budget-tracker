@@ -1,7 +1,8 @@
 module Main exposing (..)
 
 import Html exposing (Html)
-import Types exposing (Category(..), Model)
+import String
+import Types exposing (Category(..), Model, Msg(..))
 import View exposing (view)
 
 
@@ -15,18 +16,34 @@ init =
                 , "Drinking"
                 , "Reading"
                 ]
+      , newCategory = Nothing
       }
     , Cmd.none
     )
 
 
-type Msg
-    = NoOp
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    ( model, Cmd.none )
+    case msg of
+        NoOp ->
+            ( model, Cmd.none )
+
+        UpdateNewCategory categoryName ->
+            ( { model | newCategory = Just categoryName }, Cmd.none )
+
+        CloseNewCategoryDialog ->
+            ( { model | newCategory = Nothing }, Cmd.none )
+
+        AddCategory name ->
+            if String.isEmpty name then
+                ( model, Cmd.none )
+            else
+                ( { model
+                    | newCategory = Nothing
+                    , categories = model.categories ++ [ Category name ]
+                  }
+                , Cmd.none
+                )
 
 
 main : Program Never Model Msg
