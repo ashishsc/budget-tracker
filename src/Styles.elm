@@ -13,6 +13,7 @@ type Styles
     | Container
     | Setting
     | Dialog
+    | CloseDialogButton
     | None
 
 
@@ -60,6 +61,9 @@ stylesheet =
             [ Style.Color.background darken
             , Style.Color.text white
             , Style.Border.rounded 5
+            ]
+        , style CloseDialogButton
+            [ Style.Font.size 10
             ]
         ]
 

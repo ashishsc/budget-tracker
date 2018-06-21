@@ -31,7 +31,7 @@ update msg model =
         UpdateNewCategory categoryName ->
             ( { model | newCategory = Just categoryName }, Cmd.none )
 
-        CloseNewCategoryDialog ->
+        CloseDialog ->
             ( { model | newCategory = Nothing }, Cmd.none )
 
         AddCategory name ->

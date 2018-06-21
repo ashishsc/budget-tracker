@@ -5,7 +5,7 @@ type Msg
     = NoOp
     | UpdateNewCategory String
     | AddCategory String
-    | CloseNewCategoryDialog
+    | CloseDialog
 
 
 {-| Category name

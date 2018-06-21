@@ -38,29 +38,46 @@ categoryButton index (Category name) =
 addCategoryButton : Element Styles variation Msg
 addCategoryButton =
     button Styles.Setting
-        [ width (percent 50), height fill, padding 5, onClick (UpdateNewCategory "") ]
+        [ width fill, height fill, padding 5, onClick (UpdateNewCategory "") ]
         (text "+")
+
+
+closeDialogButton : Element Styles variation Msg
+closeDialogButton =
+    button CloseDialogButton
+        [ alignRight
+        , moveUp 10
+        , moveRight 15
+        , paddingLeft 5
+        , paddingRight 5
+        , paddingTop 2
+        , paddingBottom 2
+        , onClick CloseDialog
+        ]
+        (text "x")
 
 
 dialog : Model -> Element Styles variation Msg
 dialog model =
     case model.newCategory of
         Just name ->
-            modal Dialog [ width (percent 80), height (percent 80), center ] <|
-                column None [ height fill, spacing 20, padding 20 ] <|
-                    [ button None
-                        [ alignRight
-                        , padding 10
-                        , onClick CloseNewCategoryDialog
+            modal Dialog [ moveDown 20, center, padding 20 ] <|
+                column None
+                    []
+                    [ closeDialogButton
+                    , row None [ spacing 10 ] <|
+                        [ Input.text None [ width (px 80), center, spacing 5 ] <|
+                            { onChange = UpdateNewCategory
+                            , value = name
+                            , label = Input.labelLeft (text "New Category")
+                            , options = []
+                            }
+                        , button None
+                            [ onClick (AddCategory name)
+                            , width (px 80)
+                            ]
+                            (text "Add")
                         ]
-                        (text "x")
-                    , Input.text None [ width (px 80), center ] <|
-                        { onChange = UpdateNewCategory
-                        , value = name
-                        , label = Input.labelLeft (text "New Category")
-                        , options = []
-                        }
-                    , button None [ onClick (AddCategory name) ] (text "Add")
                     ]
 
         Nothing ->
