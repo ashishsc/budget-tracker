@@ -17,6 +17,7 @@ init =
                 , "Reading"
                 ]
       , newCategory = Nothing
+      , newExpense = Nothing
       }
     , Cmd.none
     )
